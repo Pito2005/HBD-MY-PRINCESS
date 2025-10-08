@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Video 💞</title>
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe6f0 0%, #ffffff 100%);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 25px;
+      box-shadow: 0 8px 30px rgba(255, 102, 153, 0.25);
+      padding: 50px;
+      max-width: 950px;
+      margin: 0 auto;
+      animation: fadeIn 1.2s ease;
+    }
+
+    h1.title {
+      font-family: 'Dancing Script', cursive;
+      color: #ff5c8d;
+      font-size: 3em;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      font-size: 1.1em;
+      color: #666;
+      margin-bottom: 35px;
+      font-style: italic;
+    }
+
+    /* Video section */
+    .video-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 2rem 0;
+      gap: 30px;
+    }
+
+    video {
+      width: 90%;
+      max-width: 900px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(255, 102, 153, 0.3);
+      border: 3px solid #ffe1eb;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: floatUp 1.5s ease both;
+    }
+
+    video:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 35px rgba(255, 102, 153, 0.4);
+    }
+
+    /* Button styles */
+    .btn-row {
+      margin-top: 35px;
+    }
+
+    .btn {
+      background: #ff5c8d;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      margin: 5px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff2f6d;
+    }
+
+    .btn.outline {
+      background: transparent;
+      border: 2px solid #ff5c8d;
+      color: #ff5c8d;
+    }
+
+    .btn.outline:hover {
+      background: #ff5c8d;
+      color: white;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="wrap">
+    <nav class="nav">
+      <a href="hbd.html">Home</a>
+      <a href="page1.html">Gallery</a>
+      <a href="page2.html">Letter</a>
+      <a href="page3.html" aria-current="page">Our Video</a>
+    </nav>
+
+    <section class="card">
+      <h1 class="title">Our Video 💞</h1>
+      <p class="sub">A special memory that always makes me smile. 🎥</p>
+
+      <div class="video-wrap">
+        <video controls autoplay loop muted playsinline>
+          <source src="img/Kiss Me.MOV" type="video/mp4">
+          <source src="img/IMG_1958.MP4" type="video/mp4">
+          Your browser doesn’t support the video tag.
+        </video>
+
+        <video controls autoplay loop muted playsinline>
+          <source src="img/IMG_1958.MP4" type="video/mp4">
+          Your browser doesn’t support the video tag.
+        </video>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn outline" href="page2.html">← Back to Letter</a>
+        <a class="btn" href="hbd.html">Return Home</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

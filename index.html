@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Birthday Cake 🎂</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ffd6e0, #ffe9f1 45%, #fbe7ff);
+      animation: bgMove 20s ease-in-out infinite;
+    }
+
+    @keyframes bgMove {
+      0%, 100% { background-position: 0 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    h1.title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      color: #ff4d6d;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      font-size: 1.1em;
+      color: #555;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .cake-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-top: 10px;
+      animation: floatCake 6s ease-in-out infinite;
+    }
+
+    @keyframes floatCake {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    #cake {
+      width: 230px;
+      cursor: pointer;
+      filter: drop-shadow(0 8px 15px rgba(255, 128, 171, 0.35));
+      transition: transform 0.3s ease;
+    }
+
+    #cake:hover {
+      transform: scale(1.05);
+    }
+
+    /* Flame */
+    .flame {
+      transform-origin: center;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .flame.on {
+      opacity: 1;
+      animation: flicker 0.8s infinite alternate ease-in-out;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1) translateY(0); fill: #ffe066; filter: drop-shadow(0 0 10px #ffd580); }
+      50% { transform: scale(0.95) translateY(-2px); fill: #ffd580; filter: drop-shadow(0 0 16px #ffb6a6); }
+      100% { transform: scale(1.05) translateY(0); fill: #fff4a3; filter: drop-shadow(0 0 10px #ffe066); }
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, #fff 40%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkleRise 1.6s linear forwards;
+    }
+
+    @keyframes sparkleRise {
+      0% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -120px) scale(0.3); opacity: 0; }
+    }
+
+    footer {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="wrap">
+    <section class="card">
+      <h1 class="title">Tap the Cake 🎂</h1>
+      <p class="sub">Make a wish, my love 💖</p>
+
+      <div class="cake-wrap">
+        <!-- SVG Cake with Candle -->
+        <svg id="cake" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220">
+          <!-- Candle -->
+          <rect x="97" y="45" width="6" height="35" rx="3" fill="#fff" stroke="#ff7aa2" stroke-width="1" />
+          <rect x="97" y="45" width="6" height="6" fill="#ff4d6d" rx="2"/>
+
+          <!-- Flame (hidden until click) -->
+          <ellipse class="flame" id="flame" cx="100" cy="35" rx="6" ry="10" fill="#ffe066" />
+
+          <!-- Cake layers -->
+          <rect x="60" y="80" width="80" height="20" rx="5" fill="#ff4d6d"/>
+          <rect x="50" y="100" width="100" height="25" rx="6" fill="#ff7aa2"/>
+          <rect x="40" y="125" width="120" height="30" rx="6" fill="#ffb6c1"/>
+
+          <!-- Icing -->
+          <path d="M40 125 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0 v30 h-120z" 
+                fill="#fff5f8" opacity="0.9"/>
+
+          <!-- Plate -->
+          <rect x="30" y="155" width="140" height="10" rx="3" fill="#ffdbe4"/>
+        </svg>
+
+        <!-- Music -->
+        <audio id="birthdayMusic" src="music/happy-birthday-2.mp3" autoplay loop playsinline muted></audio>
+      </div>
+
+      <footer>Made with 💖 by Pito.</footer>
+    </section>
+  </div>
+
+  <script>
+    const cake = document.getElementById('cake');
+    const flame = document.getElementById('flame');
+    const title = document.querySelector('.title');
+    const sub = document.querySelector('.sub');
+    const music = document.getElementById('birthdayMusic');
+
+    // Play music automatically (fade in)
+    window.addEventListener("load", () => {
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          music.volume = 0;
+          music.muted = false;
+          let vol = 0;
+          const fade = setInterval(() => {
+            if (vol < 1) {
+              vol += 0.02;
+              music.volume = vol;
+            } else {
+              clearInterval(fade);
+            }
+          }, 80);
+        }).catch(() => {
+          document.body.addEventListener("click", () => {
+            music.play();
+            music.muted = false;
+          }, { once: true });
+        });
+      }
+    });
+
+    cake.addEventListener('click', () => {
+      flame.classList.add('on');
+      title.textContent = "Happy Birthday My Love 💕";
+      sub.textContent = "Lighting your candle... ✨";
+
+      for (let i = 0; i < 10; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = 50 + Math.random() * 20 - 10 + '%';
+        sparkle.style.animationDelay = (Math.random() * 0.8) + 's';
+        document.querySelector('.cake-wrap').appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1600);
+      }
+
+      setTimeout(() => {
+        document.body.style.transition = "opacity 1.5s";
+        document.body.style.opacity = 0;
+        setTimeout(() => window.location.href = "hbd.html", 1500);
+      }, 8000);
+    });
+  </script>
+</body>
+</html>

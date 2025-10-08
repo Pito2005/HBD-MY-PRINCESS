@@ -1,0 +1,126 @@
+/* ====== Global / Theme ====== */
+:root{
+  --pink:#ff4d6d;
+  --pink-2:#ff7aa2;
+  --blush:#ffe5ec;
+  --text:#2a2a2a;
+  --card:#ffffffcc;
+  --shadow:0 12px 28px rgba(0,0,0,.15);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:var(--text);
+  background: linear-gradient(135deg, #ffd6e0, #ffe9f1 45%, #fbe7ff);
+  background-size: 200% 200%;
+  animation: bg-move 20s ease-in-out infinite;
+}
+@keyframes bg-move{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+
+.wrap{max-width:980px; margin:0 auto; padding:20px; position:relative; z-index:2}
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding: clamp(18px, 4vw, 36px);
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(6px) saturate(120%);
+  border:1px solid rgba(255,255,255,.6);
+}
+
+/* ====== Hearts overlay (pure CSS) ====== */
+.hearts{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:1}
+.hearts span{
+  position:absolute; width:14px; height:14px; background:var(--pink); transform:rotate(45deg);
+  opacity:.65; animation: float 10s linear infinite;
+}
+.hearts span::before,.hearts span::after{
+  content:""; position:absolute; width:14px; height:14px; background:inherit; border-radius:50%;
+}
+.hearts span::before{left:-7px}
+.hearts span::after{top:-7px}
+
+@keyframes float{
+  0%{transform: translateY(110vh) rotate(45deg)}
+  100%{transform: translateY(-10vh) rotate(45deg)}
+}
+
+/* Vary positions/timing for 12 hearts */
+.hearts span:nth-child(1){left:5vw; animation-duration:10s; background:#ff4d6d}
+.hearts span:nth-child(2){left:15vw; animation-duration:12s; background:#ff7aa2}
+.hearts span:nth-child(3){left:25vw; animation-duration:9s}
+.hearts span:nth-child(4){left:35vw; animation-duration:11s}
+.hearts span:nth-child(5){left:45vw; animation-duration:10.5s; background:#ff9db5}
+.hearts span:nth-child(6){left:55vw; animation-duration:12.5s}
+.hearts span:nth-child(7){left:65vw; animation-duration:9.5s}
+.hearts span:nth-child(8){left:75vw; animation-duration:11.5s}
+.hearts span:nth-child(9){left:85vw; animation-duration:10s}
+.hearts span:nth-child(10){left:12vw; animation-duration:13s}
+.hearts span:nth-child(11){left:52vw; animation-duration:12s}
+.hearts span:nth-child(12){left:92vw; animation-duration:9.8s}
+
+/* ====== Nav ====== */
+.nav{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:16px}
+.nav a{
+  display:inline-block; padding:10px 16px; border-radius:999px; text-decoration:none;
+  color:#333; background:#fff; border:1px solid rgba(0,0,0,.05); box-shadow:0 6px 16px rgba(0,0,0,.08);
+  font-weight:600; letter-spacing:.2px; transition:.2s ease;
+}
+.nav a:hover{transform:translateY(-2px)}
+.nav a[aria-current="page"]{background:linear-gradient(120deg, var(--pink), var(--pink-2)); color:#fff}
+
+/* ====== Common sections ====== */
+h1.title{margin:0 0 8px; font-size: clamp(32px, 6vw, 56px); color:var(--pink)}
+.sub{margin:0 0 18px; opacity:.85}
+
+/* ====== Home (index) ====== */
+.hero{
+  display:grid; grid-template-columns: 1.2fr .8fr; gap:clamp(16px,3vw,28px); align-items:center;
+}
+@media (max-width:860px){ .hero{ grid-template-columns:1fr } }
+.hero .img{
+  border-radius:18px; overflow:hidden; box-shadow:var(--shadow); border:2px solid #fff
+}
+.hero .img img{ width:100%; height:100%; object-fit:cover }
+.btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.btn{
+  background:linear-gradient(120deg, var(--pink), var(--pink-2));
+  color:#fff; border:none; border-radius:12px; padding:12px 18px; font-weight:700; letter-spacing:.3px;
+  text-decoration:none; display:inline-block; box-shadow:0 10px 20px rgba(255,77,109,.35); transition:.2s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.outline{background:#fff; color:#333; border:1px solid rgba(0,0,0,.08); box-shadow:var(--shadow)}
+
+/* ====== Gallery (page1) ====== */
+.gallery{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+@media (max-width:860px){ .gallery{grid-template-columns: repeat(2, 1fr)} }
+@media (max-width:520px){ .gallery{grid-template-columns: 1fr} }
+.figure{
+  background:#fff; padding:10px; border-radius:12px; box-shadow:0 12px 24px rgba(0,0,0,.12);
+}
+.figure img{ width:100%; height:240px; object-fit:cover; border-radius:10px }
+.cap{ text-align:center; margin-top:8px; font-size:14px; opacity:.75 }
+
+/* ====== Letter (page2) ====== */
+.letter{
+  background: linear-gradient(180deg, #fff, #fff9fb);
+  border:1px dashed #ffc1d0; border-radius:16px; padding:18px; line-height:1.75;
+  box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+/* ====== Coupons (page3) ====== */
+.coupons{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+@media (max-width:860px){ .coupons{grid-template-columns: repeat(2, 1fr)} }
+@media (max-width:520px){ .coupons{grid-template-columns: 1fr} }
+.coupon{
+  background:#fff; border:2px dashed #ffd0dc; border-radius:14px; padding:16px; text-align:center;
+  box-shadow:0 10px 20px rgba(0,0,0,.09);
+}
+.coupon h3{margin:6px 0 8px; color:var(--pink)}
+.coupon p{margin:0 0 8px; opacity:.85; font-size:14px}
+.small{font-size:12px; opacity:.7;}
+
+/* Footer */
+footer{ text-align:center; margin-top:18px; font-size:12px; opacity:.7 }

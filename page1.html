@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Gallery 💞</title>
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Kalam:wght@400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe6f0 0%, #fff 100%);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 25px;
+      box-shadow: 0 6px 30px rgba(255, 102, 153, 0.25);
+      padding: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+      animation: fadeIn 1.2s ease;
+    }
+
+    h1.title {
+      font-family: 'Dancing Script', cursive;
+      color: #ff5c8d;
+      font-size: 3.2em;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      font-size: 1.1em;
+      color: #666;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 35px;
+    }
+
+    .photo {
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 6px 20px rgba(255, 128, 171, 0.25);
+      width: 270px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transform: rotate(calc(-2deg + 4deg * var(--r)));
+      animation: floatUp 1.5s ease both;
+      position: relative;
+    }
+
+    .photo:hover {
+      transform: scale(1.05) rotate(0deg);
+      box-shadow: 0 10px 30px rgba(255, 102, 153, 0.3);
+    }
+
+    .photo img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .caption {
+      font-family: 'Kalam', cursive;
+      font-size: 1.1em;
+      color: #ff5c8d;
+      margin-top: 10px;
+    }
+
+    .btn-row {
+      margin-top: 40px;
+    }
+
+    .btn {
+      background: #ff5c8d;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      margin: 5px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff2f6d;
+    }
+
+    .btn.outline {
+      background: transparent;
+      border: 2px solid #ff5c8d;
+      color: #ff5c8d;
+    }
+
+    .btn.outline:hover {
+      background: #ff5c8d;
+      color: white;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="wrap">
+    <nav class="nav">
+      <a href="hbd.html">Home</a>
+      <a href="page1.html" aria-current="page">Gallery</a>
+      <a href="page2.html">Letter</a>
+      <a href="page3.html">Our Video</a>
+    </nav>
+
+    <section class="card">
+      <h1 class="title">Our Gallery 💞</h1>
+      <p class="sub">Every photo, a little piece of our story 💐</p>
+
+      <div class="gallery">
+        <div class="photo" style="--r:1">
+          <img src="img/My princess 01.png" alt="Your smile" />
+          <div class="caption">Your smile, my sunshine 🌞</div>
+        </div>
+
+        <div class="photo" style="--r:2">
+          <img src="img/IMG_1917.JPG" alt="A sweet moment" />
+          <div class="caption">Our sweetest moments ✨</div>
+        </div>
+
+        <div class="photo" style="--r:3">
+          <img src="img/IMG_1975.JPG" alt="Our adventure" />
+          <div class="caption">Adventures with you 🌿</div>
+        </div>
+
+        <div class="photo" style="--r:4">
+          <img src="img/IMG_1952.JPG" alt="Our PhotoBooth" />
+          <div class="caption">Me and You 💖</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn outline" href="hbd.html">← Back Home</a>
+        <a class="btn" href="page2.html">Next: My Letter →</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- 🎶 Background music -->
+  <audio id="galleryMusic" src="music/Tiktok Music.mp3" autoplay loop playsinline muted></audio>
+
+  <script>
+    const music = document.getElementById("galleryMusic");
+
+    window.addEventListener("load", () => {
+      const playPromise = music.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // Soft fade-in
+          music.volume = 0;
+          music.muted = false;
+          let vol = 0;
+          const fade = setInterval(() => {
+            if (vol < 1) {
+              vol += 0.02;
+              music.volume = vol;
+            } else {
+              clearInterval(fade);
+            }
+          }, 80);
+        }).catch(() => {
+          // If autoplay blocked, wait for user tap
+          document.body.addEventListener("click", () => {
+            music.play();
+            music.muted = false;
+          }, { once: true });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

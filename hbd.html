@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, My Love 💖</title>
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Romantic Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Dancing+Script:wght@600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1.title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(32px, 6vw, 56px);
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      font-family: 'Kalam', cursive;
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .hero p {
+      font-family: 'Kalam', cursive;
+      font-size: 1.1em;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    footer {
+      font-family: 'Kalam', cursive;
+      font-size: 1em;
+      color: #777;
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    /* ✅ Separate photo animation */
+    .hero .img img {
+      border-radius: 20px;
+      animation: photoFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes photoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Button styles */
+    .btn-row {
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #ff4d6d;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      margin-right: 10px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ff6f91;
+      transform: scale(1.05);
+    }
+
+    .btn.outline {
+      background: transparent;
+      border: 2px solid #ff4d6d;
+      color: #ff4d6d;
+    }
+
+    .btn.outline:hover {
+      background-color: #ff4d6d;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="wrap">
+    <nav class="nav">
+      <a href="hbd.html" aria-current="page">Home</a>
+      <a href="page1.html">Gallery</a>
+      <a href="page2.html">Letter</a>
+      <a href="page3.html">Our Video</a>
+    </nav>
+
+    <section class="card">
+      <h1 class="title">Happy Birthday, My Love 💖</h1>
+      <p class="sub">Today is your day, my love. You make every moment brighter just by being you. 💫</p>
+
+      <div class="hero">
+        <div>
+          <p>Every heartbeat, every smile, every laugh we share — it all means the world to me. You are my safe place, my happiness, and my forever. I hope this little surprise reminds you how deeply you’re loved and cherished. ❤️</p>
+
+          <div class="btn-row">
+            <a class="btn" href="page1.html">Open Memories →</a>
+            <a class="btn outline" href="page2.html">Read My Letter</a>
+          </div>
+
+          <p style="margin-top:14px"><strong>Please Tap on the Picture First.</strong></p>
+          
+          <audio id="birthdayMusic" src="music/happy-birthday-357371.mp3" autoplay loop playsinline></audio>
+        </div>
+
+        <div class="img">
+          <img src="img/HBD OUN.png" alt="Happy Birthday photo" />
+        </div>
+      </div>
+
+      <footer>Made with 💖 by Pito.</footer>
+    </section>
+  </div>
+
+
+  <script>
+    const music = document.getElementById("birthdayMusic");
+
+
+    window.addEventListener("load", () => {
+
+      const playPromise = music.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          setTimeout(() => {
+            music.muted = false;
+          }, 1200);
+        }).catch(() => {
+          document.body.addEventListener("click", () => {
+            music.play();
+            music.muted = false;
+          }, { once: true });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
